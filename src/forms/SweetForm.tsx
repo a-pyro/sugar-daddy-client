@@ -20,6 +20,7 @@ const SweetForm = () => {
   const [name, setName] = useState<string | undefined>()
   const [description, setDescription] = useState<string | undefined>()
   const [price, setPrice] = useState<number | undefined>()
+  const [_id, setId] = useState<string | undefined>()
 
   const mutation = useMutation((sweet: SweetResponse) => httpFunction(sweet), {
     onSuccess: () => {
@@ -33,17 +34,18 @@ const SweetForm = () => {
 
   useEffect(() => {
     if (isCreate) return
-    const { data } = useQuery('sweet', () => httpClient.getSweet(params.id!))
-    if (!data) return // TODO handle error
-    setName(data.name)
-    setDescription(data.description)
-    setPrice(data.price)
+    httpClient.getSweet(params.id!).then((data) => {
+      setName(data?.name)
+      setDescription(data?.description)
+      setPrice(data?.price)
+      setId(data?._id)
+    })
   }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!name || !description || !price) return
-    mutation.mutate({ name, description, price } as SweetResponse)
+    mutation.mutate({ name, description, price, _id } as SweetResponse)
   }
 
   return (
