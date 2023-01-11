@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react'
-import { API_URL } from './env'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './containers/home/Home'
+import Backoffice from './containers/backoffice/Backoffice'
+import Navbar from './components/Navbar'
 
 function App() {
-  // Test call api
-  const [data, setData] = useState(null)
-  useEffect(() => {
-    fetch(`${API_URL}/sweets`)
-      .then((response) => response.json())
-      .then((json) => setData(json))
-  }, [])
   return (
     <>
-      <h1 className='text-3xl font-bold'>Hello world!</h1>
-      {JSON.stringify(data)}
+      <Navbar />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/backoffice' element={<Backoffice />} />
+        </Routes>
+      </Router>
     </>
   )
 }
