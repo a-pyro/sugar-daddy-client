@@ -1,5 +1,3 @@
-import { useQuery } from 'react-query'
-import { getSweets } from '../../services/api/sweets'
 import SweetlistBO from '../sweet-list/SweetlistBO'
 
 const Backoffice = () => {

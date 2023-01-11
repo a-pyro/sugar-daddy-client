@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import SweetCard from '../../components/SweetCard'
-import { getSweets } from '../../services/api/sweets'
+import { httpClient } from '../../services/api/sweets'
 import { SweetResponse } from '../../types'
 
 /* 
@@ -19,7 +19,7 @@ const SweetlistPage = () => {
     data: sweets,
     isError,
     isLoading,
-  } = useQuery<SweetResponse[]>('sweets', getSweets)
+  } = useQuery<SweetResponse[]>('sweets', httpClient.getSweets)
 
   const today = new Date()
 

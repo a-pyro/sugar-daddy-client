@@ -3,7 +3,7 @@ import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import SweetListItemBO from '../../components/SweetListItemBO'
 import { useRouteNavigation } from '../../router'
-import { getSweets } from '../../services/api/sweets'
+import { httpClient } from '../../services/api/sweets'
 import { SweetResponse } from '../../types'
 
 const SweetlistBO = () => {
@@ -11,7 +11,7 @@ const SweetlistBO = () => {
     data: sweets,
     isError,
     isLoading,
-  } = useQuery<SweetResponse[]>('sweets', getSweets)
+  } = useQuery<SweetResponse[]>('sweets', httpClient.getSweets)
   const navigate = useRouteNavigation()
   if (isLoading) return <Loading />
   if (isError)
