@@ -1,4 +1,4 @@
-import SweetlistPage from '../sweet-list/SweetlistPage'
+import SweetlistPage from '../sweet-list/SweetlistHome'
 
 const Home = () => {
   return (

@@ -4,6 +4,7 @@ import Backoffice from './containers/backoffice/Backoffice'
 import Navbar from './components/Navbar'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import SweetForm from './forms/SweetForm'
 
 const queryClient = new QueryClient()
 
@@ -15,6 +16,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/behind-the-scenes' element={<Backoffice />} />
+          <Route path='/behind-the-scenes/create' element={<SweetForm />} />
+          <Route path='/behind-the-scenes/edit/:id' element={<SweetForm />} />
         </Routes>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

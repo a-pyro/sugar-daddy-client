@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
+import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import SweetCard from '../../components/SweetCard'
 import { getSweets } from '../../services/api/sweets'
@@ -44,7 +45,8 @@ const SweetlistPage = () => {
   )
 
   if (isLoading) return <Loading />
-  if (isError) return <div>😱 error</div>
+  if (isError)
+    return <Button text='😱 error' onClick={() => window.location.reload()} />
 
   return (
     <>

@@ -29,4 +29,11 @@ export interface mappedSweetResponse extends SweetResponse {
   sweetAge: number
 }
 
-export type CustomPaths = `/behind-the-scenes` | '/' | `/details/${string}`
+type BackofficePaths =
+  | '/behind-the-scenes'
+  | '/behind-the-scenes/create'
+  | `/behind-the-scenes/edit/${string}`
+
+type StorefrontPaths = '/' | `/details/${string}`
+
+export type CustomPaths = BackofficePaths | StorefrontPaths
