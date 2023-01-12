@@ -1,8 +1,10 @@
 import { Button } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
+import { Navigate } from 'react-router'
 import Loading from '../../components/Loading'
 import SweetCard from '../../components/SweetCard'
+import { useRouteNavigation } from '../../router'
 import { httpClient } from '../../services/api/sweets'
 import { SweetResponse } from '../../types'
 
@@ -14,12 +16,13 @@ base al tempo trascorso dalla loro messa in vendita hanno prezzi diversi: primo 
 
 // TODO - add loading and error states
 
-const SweetlistPage = () => {
+const SweetlistSF = () => {
   const {
     data: sweets,
     isError,
     isLoading,
   } = useQuery<SweetResponse[]>('sweets', httpClient.getSweets)
+  const navigate = useRouteNavigation()
 
   const today = new Date()
 
@@ -44,6 +47,8 @@ const SweetlistPage = () => {
     [sweets]
   )
 
+  const handleCardCtaClick = (id: string) => navigate(`/details/${id}`)
+
   if (isLoading) return <Loading />
   if (isError)
     return (
@@ -59,7 +64,12 @@ const SweetlistPage = () => {
         {mappedSweets?.map((sweet) =>
           // if price is we don't show the sweet
           sweet.price !== 0 ? (
-            <SweetCard key={sweet._id} {...sweet} createdAt='asd' />
+            <SweetCard
+              key={sweet._id}
+              {...sweet}
+              createdAt='asd'
+              onCtaClick={() => handleCardCtaClick(sweet._id)}
+            />
           ) : null
         )}
       </div>
@@ -67,4 +77,4 @@ const SweetlistPage = () => {
   )
 }
 
-export default SweetlistPage
+export default SweetlistSF
