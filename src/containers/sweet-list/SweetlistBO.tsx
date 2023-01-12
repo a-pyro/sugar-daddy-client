@@ -5,6 +5,7 @@ import SweetListItemBO from '../../components/SweetListItemBO'
 import { useRouteNavigation } from '../../router'
 import { httpClient } from '../../services/api/sweets'
 import { SweetResponse } from '../../types'
+import { useQueryClient, useMutation } from 'react-query'
 
 const SweetlistBO = () => {
   const {
@@ -13,6 +14,20 @@ const SweetlistBO = () => {
     isLoading,
   } = useQuery<SweetResponse[]>('sweets', httpClient.getSweets)
   const navigate = useRouteNavigation()
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation((id: string) => httpClient.deleteSweet(id), {
+    onSuccess: () => {
+      queryClient.refetchQueries('sweets')
+      console.log('deleted')
+    },
+    onError: () => {
+      console.log('error')
+    },
+  })
+
+  const handleItemClick = (id: string) =>
+    navigate(`/behind-the-scenes/edit/${id}`)
   if (isLoading) return <Loading />
   if (isError)
     return <Button onClick={() => window.location.reload()}>😱 error</Button>
@@ -23,7 +38,14 @@ const SweetlistBO = () => {
       </Button>
       <div>
         {sweets?.map((sweet) => {
-          return <SweetListItemBO key={sweet._id} {...sweet} />
+          return (
+            <SweetListItemBO
+              key={sweet._id}
+              {...sweet}
+              onItemClick={() => handleItemClick(sweet._id)}
+              onItemDelete={() => mutation.mutate(sweet._id)}
+            />
+          )
         })}
       </div>
     </>
