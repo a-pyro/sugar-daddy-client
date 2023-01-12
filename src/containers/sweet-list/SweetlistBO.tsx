@@ -17,10 +17,7 @@ const SweetlistBO = () => {
   const queryClient = useQueryClient()
 
   const mutation = useMutation((id: string) => httpClient.deleteSweet(id), {
-    onSuccess: () => {
-      queryClient.refetchQueries('sweets')
-      console.log('deleted')
-    },
+    onSuccess: () => queryClient.refetchQueries('sweets'),
     onError: () => {
       console.log('error')
     },
@@ -29,8 +26,7 @@ const SweetlistBO = () => {
   const handleItemClick = (id: string) =>
     navigate(`/behind-the-scenes/edit/${id}`)
   if (isLoading) return <Loading />
-  if (isError)
-    return <Button onClick={() => window.location.reload()}>😱 error</Button>
+  if (isError) return <Button onClick={() => navigate('/')}>😱 error</Button>
   return (
     <>
       <Button onClick={() => navigate('/behind-the-scenes/create')}>
