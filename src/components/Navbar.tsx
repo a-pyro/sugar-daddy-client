@@ -1,6 +1,6 @@
+import { Button } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import { useRouteNavigation } from '../router'
-import Button from './Button'
 
 const Navbar = () => {
   const navigate = useRouteNavigation()
@@ -10,9 +10,9 @@ const Navbar = () => {
   const letsGo = isBackoffice ? '/' : '/behind-the-scenes'
 
   return (
-    <nav className='flex justify-between'>
+    <nav>
       <h2>SUGAR DADDY </h2>
-      <Button text={btnText} onClick={() => navigate(letsGo)} />
+      <Button onClick={() => navigate(letsGo)}>{btnText}</Button>
     </nav>
   )
 }

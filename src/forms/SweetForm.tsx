@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { useLocation } from 'react-router'
-import Button from '../components/Button'
+import { Button, Input } from '@chakra-ui/react'
 import { useRouteNavigation } from '../router'
 import { httpClient } from '../services/api/sweets'
 import { SweetResponse } from '../types'
@@ -17,10 +17,10 @@ const SweetForm = () => {
     ? httpClient.createSweet
     : httpClient.updateSweet
 
-  const [name, setName] = useState<string | undefined>()
-  const [description, setDescription] = useState<string | undefined>()
-  const [price, setPrice] = useState<number | undefined>()
-  const [_id, setId] = useState<string | undefined>()
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState<number>()
+  const [_id, setId] = useState('')
 
   const mutation = useMutation((sweet: SweetResponse) => httpFunction(sweet), {
     onSuccess: () => {
@@ -45,19 +45,18 @@ const SweetForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!name || !description || !price) return
-    mutation.mutate({ name, description, price, _id } as SweetResponse)
+    if (isCreate) mutation.mutate({ name, description, price } as SweetResponse)
+    else mutation.mutate({ name, description, price, _id } as SweetResponse)
   }
 
   return (
-    <div className='flex justify-center content-center'>
+    <div>
       <form onSubmit={handleSubmit}>
         <div>SweetForm</div>
         <div>
           <label htmlFor='name'>Name</label>
-          <input
-            className='border-teal-800 border'
+          <Input
             type='text'
-            name='name'
             id='name'
             value={name}
             onChange={(event) => setName(event.target.value)}
@@ -65,9 +64,7 @@ const SweetForm = () => {
         </div>
         <div>
           <label htmlFor='description'>Description</label>
-          <textarea
-            className='border-teal-800 border'
-            name='description'
+          <Input
             id='description'
             value={description}
             onChange={(event) => setDescription(event.target.value)}
@@ -75,16 +72,14 @@ const SweetForm = () => {
         </div>
         <div>
           <label htmlFor='price'>Price</label>
-          <input
-            className='border-teal-800 border'
+          <Input
             type='number'
-            name='price'
             id='price'
-            value={price}
+            value={price ?? ''}
             onChange={(event) => setPrice(Number(event.target.value))}
           />
         </div>
-        <Button isSubmit text={btnText} />
+        <Button type='submit'>{btnText}</Button>
       </form>
     </div>
   )

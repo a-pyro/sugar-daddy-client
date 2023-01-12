@@ -1,5 +1,5 @@
+import { Button } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
-import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import SweetListItemBO from '../../components/SweetListItemBO'
 import { useRouteNavigation } from '../../router'
@@ -15,12 +15,12 @@ const SweetlistBO = () => {
   const navigate = useRouteNavigation()
   if (isLoading) return <Loading />
   if (isError)
-    return <Button text='😱 error' onClick={() => window.location.reload()} />
+    return <Button onClick={() => window.location.reload()}>😱 error</Button>
   return (
     <>
-      <button onClick={() => navigate('/behind-the-scenes/create')}>
+      <Button onClick={() => navigate('/behind-the-scenes/create')}>
         ADD 🍳
-      </button>
+      </Button>
       <div>
         {sweets?.map((sweet) => {
           return <SweetListItemBO key={sweet._id} {...sweet} />

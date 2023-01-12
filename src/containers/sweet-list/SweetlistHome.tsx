@@ -1,6 +1,6 @@
+import { Button } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
-import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import SweetCard from '../../components/SweetCard'
 import { httpClient } from '../../services/api/sweets'
@@ -46,12 +46,16 @@ const SweetlistPage = () => {
 
   if (isLoading) return <Loading />
   if (isError)
-    return <Button text='😱 error' onClick={() => window.location.reload()} />
+    return (
+      <Button onClick={() => window.location.reload()} colorScheme='red'>
+        😱 error
+      </Button>
+    )
 
   return (
     <>
       <div>SweetlistPage</div>
-      <div className='flex gap-3'>
+      <div>
         {mappedSweets?.map((sweet) =>
           // if price is we don't show the sweet
           sweet.price !== 0 ? (
