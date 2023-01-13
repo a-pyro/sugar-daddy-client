@@ -5,7 +5,7 @@ import { Navigate } from 'react-router'
 import Loading from '../../components/Loading'
 import SweetCard from '../../components/SweetCard'
 import { useRouteNavigation } from '../../router'
-import { httpClient } from '../../services/api/sweets'
+import { httpClient } from '../../services/api'
 import { SweetResponse } from '../../types'
 
 /* 

@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import SweetForm from './forms/SweetForm'
 import SweetDetails from './components/SweetDetails'
+import Register from './containers/auth/Register'
+import Login from './containers/auth/Login'
 
 const queryClient = new QueryClient()
 
@@ -20,6 +22,8 @@ function App() {
           <Route path='/behind-the-scenes/create' element={<SweetForm />} />
           <Route path='/behind-the-scenes/edit/:id' element={<SweetForm />} />
           <Route path='/details/:id' element={<SweetDetails />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import Loading from '../../components/Loading'
 import SweetListItemBO from '../../components/SweetListItemBO'
 import { useRouteNavigation } from '../../router'
-import { httpClient } from '../../services/api/sweets'
+import { httpClient } from '../../services/api'
 import { SweetResponse } from '../../types'
 import { useQueryClient, useMutation } from 'react-query'
 

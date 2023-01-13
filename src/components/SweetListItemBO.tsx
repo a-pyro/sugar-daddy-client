@@ -1,6 +1,5 @@
 import { Box, Button, ButtonSpinner } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { useMutation } from 'react-query'
 import { SweetResponse } from '../types'
 
 interface SweetListItemBOProps extends SweetResponse {

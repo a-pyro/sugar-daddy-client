@@ -2,12 +2,12 @@ import { Sweet } from './../../types/index'
 import { API_URL } from '../../env'
 import { SweetResponse } from '../../types'
 
-async function getSweets(): Promise<SweetResponse[]> {
+export async function getSweets(): Promise<SweetResponse[]> {
   const response = await fetch(`${API_URL}/sweets`)
   return await response.json()
 }
 
-async function createSweet(sweet: Sweet): Promise<SweetResponse> {
+export async function createSweet(sweet: Sweet): Promise<SweetResponse> {
   const response = await fetch(`${API_URL}/sweets`, {
     method: 'POST',
     headers: {
@@ -18,13 +18,15 @@ async function createSweet(sweet: Sweet): Promise<SweetResponse> {
   return await response.json()
 }
 
-async function deleteSweet(id: string): Promise<void> {
+export async function deleteSweet(id: string): Promise<void> {
   await fetch(`${API_URL}/sweets/${id}`, {
     method: 'DELETE',
   })
 }
 
-async function updateSweet(sweet: SweetResponse): Promise<SweetResponse> {
+export async function updateSweet(
+  sweet: SweetResponse
+): Promise<SweetResponse> {
   const response = await fetch(`${API_URL}/sweets/${sweet._id}`, {
     method: 'PUT',
     headers: {
@@ -35,15 +37,7 @@ async function updateSweet(sweet: SweetResponse): Promise<SweetResponse> {
   return await response.json()
 }
 
-async function getSweet(id: string): Promise<SweetResponse> {
+export async function getSweet(id: string): Promise<SweetResponse> {
   const response = await fetch(`${API_URL}/sweets/${id}`)
   return await response.json()
-}
-
-export const httpClient = {
-  getSweets,
-  createSweet,
-  deleteSweet,
-  updateSweet,
-  getSweet,
 }

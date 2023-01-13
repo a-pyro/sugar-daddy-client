@@ -36,4 +36,6 @@ type BackofficePaths =
 
 type StorefrontPaths = '/' | `/details/${string}`
 
-export type CustomPaths = BackofficePaths | StorefrontPaths
+type AuthPath = '/login' | '/register'
+
+export type CustomPaths = BackofficePaths | StorefrontPaths | AuthPath

@@ -2,7 +2,7 @@ import { Button } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { useRouteNavigation } from '../router'
-import { httpClient } from '../services/api/sweets'
+import { httpClient } from '../services/api'
 import { SweetResponse } from '../types'
 import Loading from './Loading'
 // TODO - handle no ingredients

@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import { useLocation } from 'react-router'
 import { Button, Divider, Heading, Input } from '@chakra-ui/react'
 import { useRouteNavigation } from '../router'
-import { httpClient } from '../services/api/sweets'
+import { httpClient } from '../services/api'
 import { IngredientResponse, SweetResponse } from '../types'
 
 // TODO - probabaly better use a select for ingredients => to implement with API CRUD for ingredients, create new entities ecc
