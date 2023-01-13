@@ -12,3 +12,8 @@ Who's ready to try some yummy treats from Sugar Daddy Bakery? 🍰🍩🧁
 
 
 🤤 [Live preview](https://sugar-daddy-client.vercel.app)
+
+🛠️ Possible developements:
+- Make it a portal for every sweet shop to show theie product, kinda trip advisor but for sweets.
+- Integrate GPT api to give the user an AI step by step recipes based on the ingredients.
+
