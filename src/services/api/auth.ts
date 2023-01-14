@@ -1,4 +1,8 @@
+import { useRouteNavigation } from './../../router/index'
 import { API_URL } from '../../env'
+import Cookies from 'universal-cookie'
+import { CustomPaths } from '../../types'
+const cookies = new Cookies()
 
 export interface User {
   email: string
@@ -31,5 +35,14 @@ export async function login(user: LoginUser): Promise<UserResponse> {
     },
     body: JSON.stringify(user),
   })
-  return await response.json()
+  const data: UserResponse = await response.json()
+  // setto il cookie con il token su tutte le rotte
+  cookies.set('token', data.token, { path: '/' })
+  // redirect user to the auth page
+  return data
+}
+
+export function logout() {
+  console.log('me logout')
+  cookies.remove('token', { path: '/' })
 }

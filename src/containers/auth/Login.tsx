@@ -5,6 +5,7 @@ import { useRouteNavigation } from '../../router'
 import { httpClient } from '../../services/api'
 import { LoginUser } from '../../services/api/auth'
 
+// TODO - MERGE THIS WITH REGISTER
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +19,7 @@ const Login = () => {
     {
       onSuccess: (userResponse) => {
         console.log('submitted 🚣🏻‍♂️')
+        console.log({ userResponse })
         navigate('/behind-the-scenes')
       },
       onError: () => {

@@ -4,7 +4,7 @@ import { useMutation } from 'react-query'
 import { useRouteNavigation } from '../../router'
 import { httpClient } from '../../services/api'
 import { User } from '../../services/api/auth'
-
+// TODO - MERGE THIS WITH LOGIN
 const Register = () => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
