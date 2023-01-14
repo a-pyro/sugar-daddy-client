@@ -14,7 +14,6 @@ Who's ready to try some yummy treats from Sugar Daddy Bakery? 🍰🍩🧁
 🤤 [Live preview](https://sugar-daddy-client.vercel.app)
 
 🛠️ Possible developements:
-- User login
 - Imoprove UI (Build one actually 😂)
 - Make it a portal for every sweet shop to show their products
 - Integrate GPT api to give the user an AI step by step recipes based on the ingredients.
