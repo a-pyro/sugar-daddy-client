@@ -19,12 +19,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Storefront />} />
-          {/* <Route path='/behind-the-scenes' element={<Backoffice />} /> */}
-          {/* <Route path='/behind-the-scenes/create' element={<SweetForm />} /> */}
-          {/* <Route path='/behind-the-scenes/edit/:id' element={<SweetForm />} /> */}
           <Route path='/details/:id' element={<SweetDetails />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
           <Route path='/login' element={<Login />} />
           <Route
             path='/behind-the-scenes/create'

@@ -1,4 +1,4 @@
-import { Button, Heading } from '@chakra-ui/react'
+import { Box, Button, Heading, HStack } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import { useRouteNavigation } from '../router'
 import { logout } from '../services/api/auth'
@@ -15,21 +15,23 @@ const Navbar = () => {
     logout()
     navigate('/')
   }
-  if (pathname.includes('behind-the-scenes'))
-    return (
-      <>
-        <Heading as={'h3'} size='md'>
-          Wellcome 👩🏻‍🍳
-        </Heading>
-        <Button onClick={handleLogout}>Logout</Button>
-      </>
-    )
 
   return (
-    <nav>
-      <h2>SUGAR DADDY </h2>
-      <Button onClick={() => navigate(letsGo)}>{btnText}</Button>
-    </nav>
+    <HStack marginTop={3}>
+      <Heading as='h2' size={'md'} marginRight={'auto'}>
+        SUGAR DADDY
+      </Heading>
+      <Button colorScheme={'pink'} onClick={() => navigate(letsGo)}>
+        {btnText}
+      </Button>
+      {pathname.includes('behind-the-scenes') && (
+        <>
+          <Button colorScheme={'cyan'} onClick={handleLogout}>
+            👋🏻 Logout
+          </Button>
+        </>
+      )}
+    </HStack>
   )
 }
 
